@@ -1,5 +1,8 @@
 package com.icube.exercise.spring.boot;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class OrderService {
     private final PaymentService paymentService;
 
