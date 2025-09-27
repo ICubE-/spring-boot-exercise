@@ -10,6 +10,7 @@ public class Application {
 		var context = SpringApplication.run(Application.class, args);
         var heavyResource = context.getBean(HeavyResource.class);
         var orderService = context.getBean(OrderService.class);
+        var orderService2 = context.getBean(OrderService.class);
         orderService.placeOrder();
 	}
 
