@@ -8,6 +8,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		var context = SpringApplication.run(Application.class, args);
+        var heavyResource = context.getBean(HeavyResource.class);
         var orderService = context.getBean(OrderService.class);
         orderService.placeOrder();
 	}
