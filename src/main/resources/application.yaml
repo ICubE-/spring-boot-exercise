@@ -1,6 +1,11 @@
 spring:
   application:
     name: exercise.spring.boot
+  config:
+    import: application-secret.yaml
+  datasource:
+    url: jdbc:mysql://localhost:3306/exercise.spring.boot?createDatabaseIfNotExist=true
+    username: root
 
 stripe:
   apiUrl: https://api.stripe.com
