@@ -1,12 +1,13 @@
 package com.icube.exercise.spring.boot;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
     private final PaymentService paymentService;
 
-    public OrderService(PaymentService paymentService) {
+    public OrderService(@Qualifier("paypal") PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 

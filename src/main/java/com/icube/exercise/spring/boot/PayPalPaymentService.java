@@ -2,7 +2,7 @@ package com.icube.exercise.spring.boot;
 
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("paypal")
 public class PayPalPaymentService implements PaymentService {
     @Override
     public void processPayment(double amount) {
