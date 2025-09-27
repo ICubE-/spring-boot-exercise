@@ -9,3 +9,8 @@ stripe:
   supported-currencies: USD,EUR,GBP
 
 payment-gateway: stripe
+
+notification:
+  email:
+    host: https://example.com
+    port: 587
