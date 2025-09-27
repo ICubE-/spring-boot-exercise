@@ -12,4 +12,9 @@ public class InMemoryUserRepository implements UserRepository {
     public void save(User user) {
         users.put(user.email, user);
     }
+
+    @Override
+    public boolean trySave(User user) {
+        return users.putIfAbsent(user.email,user) == null;
+    }
 }

@@ -14,7 +14,10 @@ public class UserService {
     }
 
     public void registerUser(User user) {
-        userRepository.save(user);
-        notificationService.send("User registered!", user.email);
+        if (userRepository.trySave(user)) {
+            notificationService.send("User registered!", user.email);
+        } else {
+            notificationService.send("You already have an account!", user.email);
+        }
     }
 }
