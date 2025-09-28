@@ -1,6 +1,7 @@
 package com.icube.exercise.spring.boot;
 
 import com.icube.exercise.spring.boot.entities.Address;
+import com.icube.exercise.spring.boot.entities.Tag;
 import com.icube.exercise.spring.boot.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,13 +16,7 @@ public class Application {
                 .email("jeho.yeon@example.com")
                 .password("password")
                 .build();
-        var address = Address.builder()
-                .street("street")
-                .city("city")
-                .state("state")
-                .zip("zip")
-                .build();
-        user.addAddress(address);
+        user.addTag("tag1");
         System.out.println(user);
 	}
 
