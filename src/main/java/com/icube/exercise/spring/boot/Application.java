@@ -1,6 +1,7 @@
 package com.icube.exercise.spring.boot;
 
 import com.icube.exercise.spring.boot.entities.Address;
+import com.icube.exercise.spring.boot.entities.Profile;
 import com.icube.exercise.spring.boot.entities.Tag;
 import com.icube.exercise.spring.boot.entities.User;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +17,11 @@ public class Application {
                 .email("jeho.yeon@example.com")
                 .password("password")
                 .build();
-        user.addTag("tag1");
+        var profile = Profile.builder()
+                .bio("bio")
+                .build();
+        user.setProfile(profile);
+        profile.setUser(user);
         System.out.println(user);
 	}
 

@@ -1,16 +1,16 @@
 package com.icube.exercise.spring.boot.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "profiles")
 public class Profile {
@@ -29,4 +29,10 @@ public class Profile {
 
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    @ToString.Exclude
+    private User user;
 }

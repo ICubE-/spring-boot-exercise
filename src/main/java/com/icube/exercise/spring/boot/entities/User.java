@@ -57,4 +57,7 @@ public class User {
     public void addTag(String tagName) {
         this.addTag(new Tag(tagName));
     }
+
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
 }
