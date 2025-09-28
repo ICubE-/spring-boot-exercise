@@ -3,10 +3,14 @@ package com.icube.exercise.spring.boot.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 @Entity
 @Table(name = "users")
@@ -25,4 +29,12 @@ public class User {
     @Column(nullable = false, name = "password")
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    @Builder.Default
+    private List<Address> addresses = new ArrayList<>();
+
+    public void addAddress(Address address) {
+        this.addresses.add(address);
+        address.setUser(this);
+    }
 }
