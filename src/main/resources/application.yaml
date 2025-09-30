@@ -6,6 +6,8 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/exercise.spring.boot?createDatabaseIfNotExist=true
     username: root
+  jpa:
+    show-sql: true
 
 stripe:
   apiUrl: https://api.stripe.com
