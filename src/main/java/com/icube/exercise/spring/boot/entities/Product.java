@@ -1,13 +1,15 @@
 package com.icube.exercise.spring.boot.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -27,7 +29,7 @@ public class Product {
     @Column(nullable = false, name = "price")
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     private Category category;
 }
