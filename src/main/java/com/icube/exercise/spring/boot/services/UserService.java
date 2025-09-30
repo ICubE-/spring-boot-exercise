@@ -1,6 +1,7 @@
 package com.icube.exercise.spring.boot.services;
 
 import com.icube.exercise.spring.boot.entities.User;
+import com.icube.exercise.spring.boot.repositories.ProfileRepository;
 import com.icube.exercise.spring.boot.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
     private final EntityManager entityManager;
 
     @Transactional
@@ -34,5 +36,12 @@ public class UserService {
         } else {
             System.out.println("Transient / Detached");
         }
+    }
+
+    @Transactional
+    public void showRelatedEntities() {
+        var profile = profileRepository.findById(3L).orElseThrow();
+        System.out.println(profile.getBio());
+        System.out.println(profile.getUser().getEmail());
     }
 }

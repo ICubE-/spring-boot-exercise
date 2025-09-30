@@ -13,7 +13,7 @@ public class Application {
 		var context = SpringApplication.run(Application.class, args);
         var service = context.getBean(UserService.class);
 
-        service.showEntityStates();
+        service.showRelatedEntities();
 	}
 
 }
