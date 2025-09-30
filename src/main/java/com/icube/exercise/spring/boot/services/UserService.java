@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
+    private final AddressRepository addressRepository;
     private final EntityManager entityManager;
 
     @Transactional
@@ -40,8 +41,8 @@ public class UserService {
 
     @Transactional
     public void showRelatedEntities() {
-        var profile = profileRepository.findById(3L).orElseThrow();
-        System.out.println(profile.getBio());
-        System.out.println(profile.getUser().getEmail());
+        var address = addressRepository.findById(1L).orElseThrow();
+        System.out.println(address.getStreet());
+        System.out.println(address.getUser().getEmail());
     }
 }
