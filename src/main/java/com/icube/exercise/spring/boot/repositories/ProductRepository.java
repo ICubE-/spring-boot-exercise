@@ -40,6 +40,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findFirstByNameOrderByPrice(String name);
 
     // Find products whose prices are in a given range and sort by name
-    @Query(value = "select * from products p where p.price between :min and :max order by p.name", nativeQuery = true)
+    @Query("select p from Product p join p.category where p.price between :min and :max order by p.name")
     List<Product> findProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
 }
