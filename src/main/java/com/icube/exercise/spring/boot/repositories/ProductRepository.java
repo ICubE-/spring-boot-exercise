@@ -1,5 +1,7 @@
 package com.icube.exercise.spring.boot.repositories;
 
+import com.icube.exercise.spring.boot.dtos.ProductSummary;
+import com.icube.exercise.spring.boot.entities.Category;
 import com.icube.exercise.spring.boot.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
