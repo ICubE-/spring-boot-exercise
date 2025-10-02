@@ -1,6 +1,7 @@
 package com.icube.exercise.spring.boot.repositories;
 
 import com.icube.exercise.spring.boot.dtos.ProductSummary;
+import com.icube.exercise.spring.boot.dtos.ProductSummaryDTO;
 import com.icube.exercise.spring.boot.entities.Category;
 import com.icube.exercise.spring.boot.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
@@ -52,4 +53,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Modifying
     @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
     void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
+
+    List<ProductSummaryDTO> findByCategory(Category category);
 }
