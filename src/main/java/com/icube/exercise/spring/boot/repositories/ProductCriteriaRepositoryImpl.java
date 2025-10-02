@@ -1,5 +1,6 @@
 package com.icube.exercise.spring.boot.repositories;
 
+import com.icube.exercise.spring.boot.entities.Category;
 import com.icube.exercise.spring.boot.entities.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -21,7 +22,7 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
     private final EntityManager entityManager;
 
     @Override
-    public List<Product> findProductsByCriteria(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+    public List<Product> findProductsByCriteria(String name, BigDecimal minPrice, BigDecimal maxPrice, Category category) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> cq = cb.createQuery(Product.class);
         // from Product p
@@ -39,6 +40,9 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
         if (maxPrice != null) {
             // price <= maxPrice
             predicates.add(cb.lessThanOrEqualTo(root.get("price"), maxPrice));
+        }
+        if (category != null) {
+            predicates.add(cb.equal(root.get("category"), category));
         }
 
         cq.select(root).where(predicates.toArray(new Predicate[predicates.size()]));

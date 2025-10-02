@@ -1,6 +1,7 @@
 package com.icube.exercise.spring.boot.services;
 
 import com.icube.exercise.spring.boot.entities.Address;
+import com.icube.exercise.spring.boot.entities.Category;
 import com.icube.exercise.spring.boot.entities.Product;
 import com.icube.exercise.spring.boot.entities.User;
 import com.icube.exercise.spring.boot.repositories.*;
@@ -164,11 +165,11 @@ public class UserService {
     }
 
     public void fetchProductsByCriteria() {
-        var products = productRepository.findProductsByCriteria("prod", BigDecimal.valueOf(1), null);
+        var products = productRepository.findProductsByCriteria("prod", BigDecimal.valueOf(1), null, new Category((byte) 1));
         products.forEach(System.out::println);
     }
 
-    public void fetchProductsBySpecifications(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+    public void fetchProductsBySpecifications(String name, BigDecimal minPrice, BigDecimal maxPrice, Category category) {
         Specification<Product> spec = Specification.unrestricted();
 
         if (name != null) {
@@ -179,6 +180,9 @@ public class UserService {
         }
         if (maxPrice != null) {
             spec = spec.and(ProductSpec.hasPriceLessThanOrEqualTo(maxPrice));
+        }
+        if (category != null) {
+            spec = spec.and(ProductSpec.hasCategory(category));
         }
 
         var products = productRepository.findAll(spec);
