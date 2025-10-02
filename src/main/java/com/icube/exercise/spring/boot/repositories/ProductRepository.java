@@ -1,7 +1,9 @@
 package com.icube.exercise.spring.boot.repositories;
 
 import com.icube.exercise.spring.boot.entities.Product;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -36,4 +38,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     // Limit (Top/First)
     List<Product> findTop5ByNameOrderByPrice(String name);
     List<Product> findFirstByNameOrderByPrice(String name);
+
+    // Find products whose prices are in a given range and sort by name
+    @Query(value = "select * from products p where p.price between :min and :max order by p.name", nativeQuery = true)
+    List<Product> findProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
 }
