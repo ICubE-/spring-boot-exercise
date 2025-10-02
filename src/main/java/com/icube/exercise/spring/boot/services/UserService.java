@@ -1,8 +1,6 @@
 package com.icube.exercise.spring.boot.services;
 
 import com.icube.exercise.spring.boot.entities.Address;
-import com.icube.exercise.spring.boot.entities.Category;
-import com.icube.exercise.spring.boot.entities.Product;
 import com.icube.exercise.spring.boot.entities.User;
 import com.icube.exercise.spring.boot.repositories.*;
 import jakarta.persistence.EntityManager;
@@ -135,6 +133,15 @@ public class UserService {
         users.forEach(u -> {
             System.out.println(u);
             u.getAddresses().forEach(System.out::println);
+        });
+    }
+
+    @Transactional
+    public void fetchProfiles() {
+        var userSummaries = userRepository.findLoyalUsers(2);
+        userSummaries.forEach(us -> {
+            System.out.println("ID: " + us.getId());
+            System.out.println("email: " + us.getEmail());
         });
     }
 }
