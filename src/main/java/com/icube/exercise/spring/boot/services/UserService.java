@@ -121,4 +121,10 @@ public class UserService {
         var products = productRepository.findByCategory(new Category((byte) 1));
         products.forEach(System.out::println);
     }
+
+    @Transactional
+    public void fetchUser() {
+        var user = userRepository.findByEmail("jeho.yeon@example.org").orElseThrow();
+        System.out.println(user);
+    }
 }
