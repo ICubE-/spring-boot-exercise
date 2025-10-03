@@ -14,16 +14,16 @@ import lombok.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "street")
+    @Column(name = "street")
     private String street;
 
-    @Column(nullable = false, name = "city")
+    @Column(name = "city")
     private String city;
 
-    @Column(nullable = false, name = "zip")
+    @Column(name = "zip")
     private String zip;
 
     @Column(name = "state")

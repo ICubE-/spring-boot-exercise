@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table(name = "profiles")
 public class Profile {
     @Id
-    @Column(nullable = false, name = "id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "bio")

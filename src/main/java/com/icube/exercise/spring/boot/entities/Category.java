@@ -16,10 +16,10 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "id")
+    @Column(name = "id")
     private Byte id;
 
-    @Column(nullable = false, name = "name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "category")
