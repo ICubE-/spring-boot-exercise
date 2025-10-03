@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="store" />
+    <module name="exercise.spring.boot" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.icube.exercise.spring.boot.Application" />
     <method v="2">
       <option name="Make" enabled="true" />
