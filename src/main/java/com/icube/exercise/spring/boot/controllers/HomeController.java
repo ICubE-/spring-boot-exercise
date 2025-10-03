@@ -1,17 +1,15 @@
 package com.icube.exercise.spring.boot.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
     @RequestMapping("/")
-    public String index() {
-        return "index.html";
-    }
+    public String index(Model model) {
+        model.addAttribute("name", "Jeho");
 
-    @RequestMapping("/hello")
-    public String sayHello() {
-        return "index.html";
+        return "index";
     }
 }
