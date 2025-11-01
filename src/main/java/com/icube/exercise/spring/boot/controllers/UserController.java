@@ -1,5 +1,6 @@
 package com.icube.exercise.spring.boot.controllers;
 
+import com.icube.exercise.spring.boot.dtos.RegisterUserRequest;
 import com.icube.exercise.spring.boot.dtos.UserDto;
 import com.icube.exercise.spring.boot.mappers.UserMapper;
 import com.icube.exercise.spring.boot.repositories.UserRepository;
@@ -7,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Set;
 
@@ -45,7 +47,15 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        return userDto;
+    public ResponseEntity<UserDto> createUser(
+            @RequestBody RegisterUserRequest request,
+            UriComponentsBuilder uriBuilder
+    ) {
+        var user = userMapper.toEntity(request);
+        userRepository.save(user);
+
+        var userDto = userMapper.toDto(user);
+        var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
+        return ResponseEntity.created(uri).body(userDto);
     }
 }
