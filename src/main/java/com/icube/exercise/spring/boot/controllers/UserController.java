@@ -1,6 +1,7 @@
 package com.icube.exercise.spring.boot.controllers;
 
 import com.icube.exercise.spring.boot.dtos.RegisterUserRequest;
+import com.icube.exercise.spring.boot.dtos.UpdateUserRequest;
 import com.icube.exercise.spring.boot.dtos.UserDto;
 import com.icube.exercise.spring.boot.mappers.UserMapper;
 import com.icube.exercise.spring.boot.repositories.UserRepository;
@@ -57,5 +58,21 @@ public class UserController {
         var userDto = userMapper.toDto(user);
         var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
         return ResponseEntity.created(uri).body(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(
+            @PathVariable(name = "id") Long id,
+            @RequestBody UpdateUserRequest request
+    ) {
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        userMapper.update(request, user);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
