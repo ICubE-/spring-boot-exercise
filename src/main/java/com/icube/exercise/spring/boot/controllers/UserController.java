@@ -6,6 +6,7 @@ import com.icube.exercise.spring.boot.dtos.UpdateUserRequest;
 import com.icube.exercise.spring.boot.dtos.UserDto;
 import com.icube.exercise.spring.boot.mappers.UserMapper;
 import com.icube.exercise.spring.boot.repositories.UserRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(
-            @RequestBody RegisterUserRequest request,
+            @Valid @RequestBody RegisterUserRequest request,
             UriComponentsBuilder uriBuilder
     ) {
         var user = userMapper.toEntity(request);
